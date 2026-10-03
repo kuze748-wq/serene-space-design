@@ -1,0 +1,6 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { FinalCta, PageIntro, PageShell } from "@/components/site/site-layout";
+import { faqs, pageMeta } from "@/lib/site-data";
+export const Route = createFileRoute("/faq")({ head: () => pageMeta("Perguntas frequentes | Psicóloga Ângela Testa", "Respostas para dúvidas frequentes sobre psicoterapia, sessões, sigilo e agendamento.", "/faq"), component: FaqPage });
+function FaqPage() { return <PageShell><PageIntro eyebrow="Perguntas frequentes" title="Informação clara também faz parte do cuidado." text="Reunimos respostas iniciais sobre o atendimento. Para informações específicas, entre em contato diretamente." /><section className="py-16 lg:py-24"><div className="mx-auto max-w-3xl px-5"><Accordion type="single" collapsible>{faqs.map((faq, index) => <AccordionItem key={faq.q} value={`item-${index}`} className="border-border"><AccordionTrigger className="py-6 text-left font-display text-xl font-normal hover:no-underline">{faq.q}</AccordionTrigger><AccordionContent className="pb-6 text-base leading-7 text-muted-foreground">{faq.a}</AccordionContent></AccordionItem>)}</Accordion></div></section><FinalCta /></PageShell>; }
