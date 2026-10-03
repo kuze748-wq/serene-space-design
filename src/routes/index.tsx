@@ -1,24 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Check, MessageCircle, ShieldCheck } from "lucide-react";
+import heroImage from "@/assets/psychologist-hero.jpg";
+import officeImage from "@/assets/therapy-office.jpg";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { Eyebrow, FinalCta, PageShell } from "@/components/site/site-layout";
+import { brand, faqs, pageMeta, specialties, steps, whatsappUrl } from "@/lib/site-data";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+export const Route = createFileRoute("/")({ head: () => pageMeta("Psicóloga Ângela Testa | Atendimento em Adamantina — SP", "Acolhimento e acompanhamento psicológico com Ângela Testa em Adamantina, SP. Entre em contato para saber mais.", "/"), component: Index });
+function Index() { return <PageShell>
+  <section className="relative overflow-hidden bg-secondary"><div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-[1440px] lg:grid-cols-[1.08fr_0.92fr]"><div className="flex items-center px-5 py-16 lg:px-12 lg:py-20 xl:px-20"><div className="max-w-2xl animate-reveal"><Eyebrow>Psicologia clínica · Adamantina — SP</Eyebrow><h1 className="font-display text-[clamp(2.7rem,5vw,5.6rem)] leading-[0.98] text-balance">Cuide da sua saúde emocional com acolhimento, segurança e acompanhamento profissional.</h1><p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">Um espaço de escuta, acolhimento e desenvolvimento emocional, pensado para você.</p><div className="mt-9 flex flex-col gap-3 sm:flex-row"><Button asChild size="lg" className="h-12 rounded-full px-6"><a href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle />Agendar atendimento</a></Button><Button asChild variant="outline" size="lg" className="h-12 rounded-full border-primary/25 bg-transparent px-6"><Link to="/sobre">Conhecer meu trabalho <ArrowRight /></Link></Button></div><div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 border-t border-border pt-6 text-xs text-muted-foreground"><span className="flex items-center gap-2"><ShieldCheck className="size-4 text-accent" />Sigilo profissional</span><span className="flex items-center gap-2"><Check className="size-4 text-accent" />Escuta individualizada</span><span className="flex items-center gap-2"><Check className="size-4 text-accent" />Atendimento ético</span></div></div></div><div className="relative min-h-[560px] lg:min-h-0"><img src={heroImage} width={1280} height={1600} fetchPriority="high" alt="Imagem profissional provisória da psicóloga em um consultório acolhedor" className="absolute inset-0 size-full object-cover" /><div className="absolute bottom-5 left-5 bg-background/90 px-4 py-3 text-xs text-muted-foreground backdrop-blur-sm">Foto provisória · substituir pela imagem profissional</div></div></div></section>
+  <section className="py-20 lg:py-32"><div className="mx-auto grid max-w-[1200px] gap-12 px-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:px-8"><div className="relative"><img src={officeImage} width={1600} height={1104} loading="lazy" alt="Imagem provisória de um ambiente acolhedor para atendimento psicológico" className="aspect-[4/3] w-full object-cover" /><span className="absolute -bottom-6 right-0 bg-primary px-6 py-5 font-display text-xl text-primary-foreground sm:right-6">Cuidado com presença.</span></div><div><Eyebrow>Sobre a psicóloga</Eyebrow><h2 className="font-display text-4xl leading-tight text-balance sm:text-5xl">Um encontro com a sua história, sem pressa e sem julgamentos.</h2><p className="mt-6 leading-8 text-muted-foreground"><strong className="text-foreground">{brand.name}</strong> oferece um espaço de acolhimento e escuta psicológica em {brand.location}. As informações sobre formação, abordagem e trajetória profissional serão inseridas após confirmação.</p><p className="mt-4 text-sm font-medium text-accent">{brand.crp}</p><Button asChild variant="link" className="mt-6 h-auto p-0 text-foreground"><Link to="/sobre">Conhecer minha trajetória <ArrowRight /></Link></Button></div></div></section>
+  <section className="bg-secondary py-20 lg:py-28"><div className="mx-auto max-w-[1200px] px-5 lg:px-8"><div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end"><div><Eyebrow>Especialidades</Eyebrow><h2 className="font-display text-4xl leading-tight sm:text-5xl">Diferentes caminhos para cuidar de si.</h2></div><p className="max-w-lg leading-7 text-muted-foreground lg:justify-self-end">Algumas das demandas que podem ser acolhidas no acompanhamento psicológico.</p></div><div className="mt-12 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">{specialties.slice(0, 4).map(({ title, description, icon: Icon }, i) => <article key={title} className="group bg-secondary p-7 transition-colors hover:bg-background"><div className="flex justify-between"><Icon className="size-6 text-accent" /><span className="font-display text-sm text-gold">0{i + 1}</span></div><h3 className="mt-12 font-display text-2xl">{title}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{description}</p></article>)}</div><Button asChild variant="outline" className="mt-8 rounded-full bg-transparent"><Link to="/especialidades">Ver todas as áreas <ArrowRight /></Link></Button></div></section>
+  <section className="py-20 lg:py-28"><div className="mx-auto max-w-[1200px] px-5 lg:px-8"><div className="max-w-2xl"><Eyebrow>Como funciona</Eyebrow><h2 className="font-display text-4xl leading-tight sm:text-5xl">Passo a passo, com clareza e tranquilidade.</h2></div><div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">{steps.map((step) => <article key={step.number} className="border-t border-primary pt-5"><span className="font-display text-4xl text-gold">{step.number}</span><h3 className="mt-8 font-display text-2xl">{step.title}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{step.text}</p></article>)}</div></div></section>
+  <section className="bg-primary py-20 text-primary-foreground lg:py-28"><div className="mx-auto max-w-[1200px] px-5 lg:px-8"><div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]"><div><p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-light">Confiança profissional</p><h2 className="mt-5 font-display text-4xl leading-tight sm:text-5xl">Informações claras para uma escolha consciente.</h2></div><dl className="grid gap-px bg-primary-foreground/15 sm:grid-cols-2"><Info label="CRP" value="[PLACEHOLDER — inserir registro]" /><Info label="Formação" value="[PLACEHOLDER — inserir formação]" /><Info label="Especializações" value="[PLACEHOLDER — inserir especializações]" /><Info label="Modalidade" value="[PLACEHOLDER — confirmar]" /><Info label="Localização" value={brand.location} /><Info label="Atendimento" value="[PLACEHOLDER — online/presencial]" /></dl></div></div></section>
+  <section className="py-20 lg:py-28"><div className="mx-auto grid max-w-[1100px] gap-12 px-5 lg:grid-cols-[0.8fr_1.2fr] lg:px-8"><div><Eyebrow>FAQ</Eyebrow><h2 className="font-display text-4xl leading-tight sm:text-5xl">Dúvidas que podem surgir antes de começar.</h2><Button asChild variant="link" className="mt-6 h-auto p-0"><Link to="/faq">Ver todas as perguntas <ArrowRight /></Link></Button></div><Accordion type="single" collapsible>{faqs.slice(0, 4).map((faq, i) => <AccordionItem key={faq.q} value={`home-${i}`}><AccordionTrigger className="py-6 text-left font-display text-xl font-normal hover:no-underline">{faq.q}</AccordionTrigger><AccordionContent className="text-base leading-7 text-muted-foreground">{faq.a}</AccordionContent></AccordionItem>)}</Accordion></div></section>
+  <FinalCta />
+</PageShell>; }
+function Info({ label, value }: { label: string; value: string }) { return <div className="bg-primary p-6"><dt className="text-xs uppercase tracking-[0.16em] text-primary-foreground/55">{label}</dt><dd className="mt-3 text-sm leading-6 text-primary-foreground/85">{value}</dd></div>; }
