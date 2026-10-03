@@ -22,10 +22,10 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/92 backdrop-blur-xl">
       <div className="mx-auto grid h-20 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 lg:px-8">
         <BrandMark />
-        <nav className="hidden items-center gap-5 xl:flex" aria-label="Navegação principal">
-          {navItems.map((item) => <Link key={item.to} to={item.to} className="text-xs font-medium text-muted-foreground transition-colors hover:text-primary" activeProps={{ className: "text-primary" }}>{item.label}</Link>)}
-        </nav>
-        <div className="hidden lg:block xl:ml-2">
+        <div className="hidden items-center gap-5 lg:flex">
+          <nav className="hidden items-center gap-5 xl:flex" aria-label="Navegação principal">
+            {navItems.map((item) => <Link key={item.to} to={item.to} className="text-xs font-medium text-muted-foreground transition-colors hover:text-primary" activeProps={{ className: "text-primary" }}>{item.label}</Link>)}
+          </nav>
           <Button asChild size="lg" className="rounded-full px-5"><a href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle />Agendar atendimento</a></Button>
         </div>
         <Button variant="ghost" size="icon" className="lg:hidden" aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen((value) => !value)}>{open ? <X /> : <Menu />}</Button>
