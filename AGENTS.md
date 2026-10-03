@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep shared site identity, navigation, contact details, specialties, steps, and FAQ content centralized in `src/lib/site-data.ts` so every page stays consistent and easy to edit.
